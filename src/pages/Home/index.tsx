@@ -1,44 +1,28 @@
-import { useEffect, useState } from 'react'
-import Footer from '../../components/Footer'
+import { useGetRestaurantesQuery } from '../../services/api'
+
+import { Container } from '../../styles'
+
 import Header from '../../components/Header'
-import RestaurantList from '../../components/List'
-export type CardapioItem = {
-  id: number
-  nome: string
-  descricao: string
-  preco: number
-  porcao: string
-  foto: string
-  quantidade: number
-}
-export type Restaurants = {
-  foto: string
-  infos: string[]
-  id: number
-  titulo: string
-  destacado: boolean
-  tipo: string
-  avaliacao: string
-  descricao: string
-  capa: string
-  cardapio: CardapioItem[]
-}
+import LojaLista from '../../components/LojasLista'
+import Footer from '../../components/Footer'
+import Loader from '../../components/Loader'
 
 const Home = () => {
-  const [restaurants, setRestaurants] = useState<Restaurants[]>([])
+  const { data: lojas } = useGetRestaurantesQuery()
 
-  useEffect(() => {
-    fetch('https://ebac-fake-api.vercel.app/api/efood/restaurantes')
-      .then((resposta) => resposta.json())
-      .then((resposta) => setRestaurants(resposta))
-  }, [])
+  if (!lojas) {
+    return <Loader />
+  }
 
   return (
     <>
       <Header />
-      <RestaurantList restaurants={restaurants} />
+      <Container>
+        <LojaLista restaurantes={lojas || []} />
+      </Container>
       <Footer />
     </>
   )
 }
+
 export default Home

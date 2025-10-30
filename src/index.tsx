@@ -1,46 +1,28 @@
-import { useEffect, useState } from 'react'
-import FoodList from '../../components/FoodList'
+import { useGetRestaurantesQuery } from '../../services/api'
+
+import { Container } from '../../styles'
+
+import Header from '../../components/Header'
+import LojaLista from '../../components/LojasLista'
 import Footer from '../../components/Footer'
-import HeaderPerfil from '../../components/HeaderPerfil'
-import { useParams } from 'react-router-dom'
-import Cart from '../../components/Cart'
-import type { CardapioItem, Restaurants } from '../../pages/Home'
+import Loader from '../../components/Loader'
 
-const Perfil = () => {
-  const [restaurante, setRestaurante] = useState<Restaurants | null>(null)
-  const { id } = useParams()
+const Home = () => {
+  const { data: lojas } = useGetRestaurantesQuery()
 
-  useEffect(() => {
-    fetch(`https://ebac-fake-api.vercel.app/api/efood/restaurantes/${id}`)
-      .then((resposta) => resposta.json())
-      .then((resposta) => {
-        const cardapioCorrigido: CardapioItem[] = resposta.cardapio.map(
-          (item: any) => ({
-            ...item,
-            preco: Number(item.preco)
-          })
-        )
-        setRestaurante({
-          ...resposta,
-          cardapio: cardapioCorrigido
-        } as Restaurants)
-      })
-  }, [id])
+  if (!lojas) {
+    return <Loader />
+  }
 
   return (
     <>
-      {restaurante && (
-        <HeaderPerfil
-          tipo={restaurante.tipo!}
-          titulo={restaurante.titulo!}
-          capa={restaurante.capa!}
-        />
-      )}
-      <FoodList />
-      <Cart />
+      <Header />
+      <Container>
+        <LojaLista restaurantes={lojas || []} />
+      </Container>
       <Footer />
     </>
   )
 }
 
-export default Perfil
+export default Home

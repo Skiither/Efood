@@ -1,34 +1,31 @@
 import styled from 'styled-components'
+
 import { cores } from '../../styles'
 
-export const ContainerFooter = styled.section`
-  background-color: ${cores.bege};
+export const FooterSection = styled.footer`
+  width: 100%;
+  height: 298px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: initial;
+  align-items: center;
+  margin-top: 120px;
+  background-color: ${cores.corSecundaria};
 `
 
 export const Logo = styled.img`
-  display: block;
-  margin: 0 auto;
-  padding-top: 40px;
+  margin-bottom: 32px;
 `
 
-export const ListLogos = styled.ul`
+export const RedesContainer = styled.div`
   display: flex;
-  list-style: none;
-  justify-content: center;
-  padding-top: 32px;
-
-  #twitter {
-    margin: 0 8px;
-  }
+  gap: 8px;
+  margin-bottom: 80px;
 `
-
-export const TextFooter = styled.p`
-  color: ${cores.rosa};
+export const Paragrafo = styled.p`
+  max-width: 480px;
+  width: 100%;
   font-size: 10px;
-  width: 480px;
   text-align: center;
-  display: block;
-  margin: 0 auto;
-  padding-top: 80px;
-  padding-bottom: 40px;
 `

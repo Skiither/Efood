@@ -1,27 +1,30 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
 
-export const Imagem = styled.div`
+import HeroHeader from '../../assets/images/HeroHeader.svg'
+
+export const Hero = styled.header`
+  background-image: url(${HeroHeader});
   width: 100%;
   height: 384px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   margin-bottom: 80px;
-`
 
-export const Logo = styled.img`
+  h1 {
+    line-height: 0;
+    margin-top: 40px;
+  }
+`
+export const LogoImg = styled.img`
   max-width: 100%;
   height: auto;
 `
-
-export const TextHeader = styled.p`
-  font-weight: bold;
-  font-size: 36px;
-  line-height: 100%;
-  color: ${cores.rosa};
-  margin-top: 138px;
-  max-width: 550px;
+export const SubTitulo = styled.h2`
+  font-size: 2.25rem;
+  font-weight: 900;
+  max-width: 539px;
+  height: 84px;
   text-align: center;
 `

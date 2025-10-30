@@ -1,47 +1,85 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
 
-export const Imagem = styled.div`
-  width: 100%;
-  height: 186px;
+import { breakPoints, Container, cores } from '../../styles'
+
+import HeroHeader from '../../assets/images/HeroHeader.svg'
+
+export const Section = styled.section`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 32px;
+  justify-content: center;
+  background-image: url(${HeroHeader});
+
+  h1 {
+    line-height: 0;
+  }
+
+  a,
+  span {
+    cursor: pointer;
+    text-decoration: none;
+    color: ${cores.corPrincipal};
+  }
+
+  ${Container} {
+    background-color: transparent;
+    display: flex;
+    height: 186px;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1024px;
+    width: 100%;
+    font-weight: 900;
+    font-size: 18px;
+  }
+
+  @media (max-width: ${breakPoints.tablet}) {
+    ${Container} {
+      flex-direction: column;
+      justify-content: space-around;
+
+      .logo-primeiro {
+        order: -1;
+      }
+    }
+  }
 `
 
-export const Text = styled.h3`
-  font-size: 18px;
-  font-weight: 900;
-  color: ${cores.rosa};
-`
-
-export const Banner = styled.div`
+export const Capa = styled.div`
   width: 100%;
   height: 280px;
-  color: ${cores.branco};
   background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
+  position: relative;
+  color: #fff;
+
+  ${Container} {
+    padding-top: 25px;
+    padding-bottom: 32px;
+    background-color: transparent;
+  }
 `
 
-export const TextBanner = styled.p`
-  padding-top: 25px;
+export const Transparente = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+`
+
+export const Paragrafo = styled.p`
+  top: 0;
   font-size: 32px;
   font-weight: 100;
-  padding-bottom: 152px;
+  position: sticky;
+  z-index: 1;
 `
-
-export const RestaurantName = styled.p`
+export const NomeRestaurante = styled.h2`
+  position: absolute;
+  margin-top: 156px;
+  z-index: 1;
   font-size: 32px;
   font-weight: 900;
-  width: 672px;
-`
-export const Cart = styled.h3`
-  cursor: pointer;
-  font-weight: 900;
-  font-size: 18px;
-  color: ${cores.rosa};
-  &:hover {
-    text-decoration: underline;
-  }
 `

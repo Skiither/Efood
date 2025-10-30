@@ -1,104 +1,106 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
 
-type LabelProps = {
-  width?: string
+import { breakPoints, cores } from '../../styles'
+import { ButtonContainer, ButtonLink } from '../Button/styles'
+
+type WidthProps = {
+  maxWidth?: string
 }
 
-export const OrderContainer = styled.div`
-  background-color: ${cores.rosa};
-  position: fixed;
-  z-index: 11;
-  top: 0;
-  right: 0;
-  width: 360px;
-  height: 100%;
-  padding: 8px 16px 8px 8px;
-  overflow-y: scroll;
+export const Aside = styled.aside`
+  padding-top: 32px;
+  font-weight: 700;
+  color: ${cores.corSecundaria};
 
-  @media (max-width: 768px) {
-    width: 70%;
+  h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
   }
 
-  &::-webkit-scrollbar {
-    display: none;
+  p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    margin-bottom: 20px;
+  }
+
+  ${ButtonContainer} {
+    max-width: 100%;
+    height: 24px;
+    padding: 0;
+  }
+
+  ${ButtonLink} {
+    height: 24px;
+    color: ${cores.corPrincipal};
+    background-color: ${cores.corSecundaria};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (max-width: ${breakPoints.tablet}) {
+    width: 50%; // Ocupa 50% da largura da tela
+    max-width: none; // Remove o max-width para que 'width: 50%' funcione
   }
 `
-export const OrderTitle = styled.h2`
-  color: ${cores.begeclaro};
-  margin-top: 32px;
-  margin-bottom: 16px;
-  font-size: 16px;
-  font-weight: bold;
-`
-export const OrderRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  font-size: 14px;
-  font-weight: bold;
-  color: ${cores.bege};
-  column-gap: 34px;
-`
-export const LabelContainer = styled.div<LabelProps>`
+
+export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: ${(props) => (props.width ? props.width : '100%')};
-  gap: 8px;
-  margin-bottom: 8px;
-  position: relative;
+  margin-bottom: 24px;
 
   label {
     font-size: 14px;
-  }
-
-  input {
-    font-size: 14px;
-    color: #4b4b4b;
-    font-weight: bold;
-    padding-block: 4px;
-    padding-left: 4px;
-    width: 100%;
-    background-color: ${cores.bege};
-    border: 2px solid ${cores.bege};
-    height: 32px;
-
-    &.error {
-      border: 2px solid #ff4500;
-      border-radius: 4px;
-    }
+    margin-bottom: 8px;
+    margin-top: 8px;
   }
 `
-export const ErrorMessage = styled.small`
-  background-color: #ff4500;
-  color: ${cores.begeclaro};
-  font-size: 10px;
-  position: absolute;
-  top: 18px;
-  left: 15px;
-  border-radius: 4px;
-  padding: 3px;
-`
-export const OrderButton = styled.button`
-  background-color: ${cores.bege};
-  color: ${cores.rosa};
-  text-align: center;
-  cursor: pointer;
-  border: none;
-  font-size: 14px;
-  text-decoration: none;
+
+export const Input = styled.input<WidthProps>`
   width: 100%;
-  height: 24px;
-  border: 8px;
-  font-weight: 700;
-  margin-bottom: 8px;
+  height: 32px;
+  padding-left: 10px;
+  background-color: ${cores.corSecundaria};
+  border: none;
+  outline: none;
 
-  &.marginTop {
-    margin-top: 32px;
+  &.erro {
+    border: 1px solid red;
+  }
+
+  @media (min-width: ${breakPoints.tablet}) {
+    width: ${(props) => props.maxWidth || '100%'};
   }
 `
-export const OrderDescription = styled.p`
-  font-size: 14px;
-  line-height: 22px;
-  color: ${cores.bege};
-  margin-bottom: 16px;
+
+export const Row = styled.div`
+  display: flex;
+  margin-top: 8px;
+  justify-content: space-between;
+  gap: 31px;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (max-width: ${breakPoints.tablet}) {
+    display: block;
+    width: 100%;
+  }
+`
+
+export const ContainerParagrafo = styled.div`
+  width: 344px;
+  height: 100%;
+  max-height: 186px;
+`
+
+export const ContainerButton = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
 `

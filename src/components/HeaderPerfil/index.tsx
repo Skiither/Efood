@@ -1,53 +1,49 @@
 import { useDispatch, useSelector } from 'react-redux'
-import fundoImg from '../../assets/images/fundo.png'
+import { Link } from 'react-router-dom'
+
+import { RootReducer } from '../../store'
+import { open } from '../../store/reducers/cart'
+
+import * as S from './styles'
+import { Container } from '../../styles'
+
 import logo from '../../assets/images/logo.svg'
 
-import {
-  Imagem,
-  Text,
-  Banner,
-  TextBanner,
-  RestaurantName,
-  Cart
-} from './styles'
-import { Container } from '../../styles'
-import { Link, useParams } from 'react-router-dom'
-import { open } from '../../store/reducers/Cart'
-import { useGetCardapioQuery, useGetRestauranteQuery } from '../../services/api'
-import type { RootReducer } from '../../store/index'
-
 type Props = {
-  tipo: string
-  titulo: string
-  capa: string
+  heroBanner: RestauranteDetalhado
 }
 
-export default function HeaderPerfil({ tipo, titulo, capa }: Props) {
-  const { id } = useParams()
-  const dispatch = useDispatch()
-  const abreCart = () => dispatch(open())
+const HeaderPerfil = ({ heroBanner }: Props) => {
+  const dispath = useDispatch()
   const { items } = useSelector((state: RootReducer) => state.cart)
 
-  const { data: restaurante } = useGetRestauranteQuery(id!)
+  const cartOpen = () => {
+    dispath(open())
+  }
+
   return (
-    <>
-      <Imagem style={{ backgroundImage: `url(${fundoImg})` }}>
-        <Text>Restaurantes</Text>
-        <Link to="/">
-          <img src={logo} alt="Efood" />
-        </Link>
-        <Cart onClick={abreCart}>{items.length} produto(s) no carrinho</Cart>
-      </Imagem>
-      <Banner
-        style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url(${restaurante?.capa})`
-        }}
-      >
+    <header>
+      <S.Section>
         <Container>
-          <TextBanner>{restaurante?.tipo}</TextBanner>
-          <RestaurantName>{restaurante?.titulo}</RestaurantName>
+          <a href="/">Restaurantes</a>
+          <Link to="/" className="logo-primeiro">
+            <h1>
+              <img src={logo} alt="" />
+            </h1>
+          </Link>
+          <span role="button" onClick={cartOpen}>
+            {items.length} produto(s) no carrinho
+          </span>
         </Container>
-      </Banner>
-    </>
+      </S.Section>
+      <S.Capa style={{ backgroundImage: `url(${heroBanner.capa})` }}>
+        <S.Transparente />
+        <Container>
+          <S.Paragrafo>{heroBanner.tipo}</S.Paragrafo>
+          <S.NomeRestaurante>{heroBanner.titulo}</S.NomeRestaurante>
+        </Container>
+      </S.Capa>
+    </header>
   )
 }
+export default HeaderPerfil
