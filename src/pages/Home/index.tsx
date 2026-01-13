@@ -1,28 +1,13 @@
-import { useGetRestaurantesQuery } from '../../services/api'
+import { Footer } from '../../components/SubComponents/Footer'
+import { Body } from '../../components/Home/HomeBody'
+import { Header } from '../../components/Home/HomeHeader'
 
-import { Container } from '../../styles'
-
-import Header from '../../components/Header'
-import LojaLista from '../../components/LojasLista'
-import Footer from '../../components/Footer'
-import Loader from '../../components/Loader'
-
-const Home = () => {
-  const { data: lojas } = useGetRestaurantesQuery()
-
-  if (!lojas) {
-    return <Loader />
-  }
-
+export const Home = () => {
   return (
     <>
       <Header />
-      <Container>
-        <LojaLista restaurantes={lojas || []} />
-      </Container>
+      <Body />
       <Footer />
     </>
   )
 }
-
-export default Home
