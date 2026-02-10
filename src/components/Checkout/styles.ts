@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { breakPoints, cores } from '../../styles'
+import { breakPoints, cores } from '../../styles/index'
 import { ButtonContainer, ButtonLink } from '../Button/styles'
 
 type WidthProps = {

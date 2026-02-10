@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { cores } from '../../styles/index'
 
 export const Botao = styled.div`
   background-color: ${cores.bege};

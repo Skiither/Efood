@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { breakPoints, cores } from '../../styles'
+import { cores } from '../../styles/index'
 import { ButtonContainer } from '../Button/styles'
 import lixeira from '../../assets/images/lixeira.png'
 
